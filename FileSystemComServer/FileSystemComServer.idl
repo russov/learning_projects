@@ -1,0 +1,34 @@
+// FileSystemComServer.idl : IDL source for FileSystemComServer
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (FileSystemComServer.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(6E6ABDA4-9839-4AA4-A928-3120980115B5),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IWorkFileSystem : IDispatch{
+};
+[
+	uuid(C395AD5D-3804-4035-88DB-2628C972906C),
+	version(1.0),
+]
+library FileSystemComServerLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(EA48EB7E-7C33-49B8-86E8-CCDECAB12086)		
+	]
+	coclass WorkFileSystem
+	{
+		[default] interface IWorkFileSystem;
+	};
+};
+

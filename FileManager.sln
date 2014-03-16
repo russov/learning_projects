@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientFileManager", "ClientFileManager", "{A2A9F688-B332-487D-AAE4-8F3BE83070A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerFileManager", "ServerFileManager", "{B6F152CC-2006-44D9-B295-64D3A6E80483}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSystemComServer", "FileSystemComServer\FileSystemComServer.vcxproj", "{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSystemComServerPS", "FileSystemComServer\FileSystemComServerPS.vcxproj", "{A8A7D08F-5961-478C-BABF-345DB70E7F23}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8} = {CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSystemComClient", "FileSystemComClient\FileSystemComClient.vcxproj", "{74DC995F-9372-4DB5-820C-CF47A1A499B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8}.Debug|Win32.Build.0 = Debug|Win32
+		{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8}.Release|Win32.ActiveCfg = Release|Win32
+		{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8}.Release|Win32.Build.0 = Release|Win32
+		{A8A7D08F-5961-478C-BABF-345DB70E7F23}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A8A7D08F-5961-478C-BABF-345DB70E7F23}.Release|Win32.ActiveCfg = Release|Win32
+		{74DC995F-9372-4DB5-820C-CF47A1A499B6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{74DC995F-9372-4DB5-820C-CF47A1A499B6}.Debug|Win32.Build.0 = Debug|Win32
+		{74DC995F-9372-4DB5-820C-CF47A1A499B6}.Release|Win32.ActiveCfg = Release|Win32
+		{74DC995F-9372-4DB5-820C-CF47A1A499B6}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{74DC995F-9372-4DB5-820C-CF47A1A499B6} = {A2A9F688-B332-487D-AAE4-8F3BE83070A5}
+		{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8} = {B6F152CC-2006-44D9-B295-64D3A6E80483}
+		{A8A7D08F-5961-478C-BABF-345DB70E7F23} = {B6F152CC-2006-44D9-B295-64D3A6E80483}
+	EndGlobalSection
+EndGlobal
