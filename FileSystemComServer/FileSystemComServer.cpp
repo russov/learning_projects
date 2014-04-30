@@ -7,16 +7,15 @@
 #include "dllmain.h"
 
 
-using namespace ATL;
-
 // Used to determine whether the DLL can be unloaded by OLE.
 STDAPI DllCanUnloadNow(void)
 {
-			return _AtlModule.DllCanUnloadNow();
+			AFX_MANAGE_STATE(AfxGetStaticModuleState());
+	return (AfxDllCanUnloadNow()==S_OK && _AtlModule.GetLockCount()==0) ? S_OK : S_FALSE;
 	}
 
 // Returns a class factory to create an object of the requested type.
-STDAPI DllGetClassObject(_In_ REFCLSID rclsid, _In_ REFIID riid, _Outptr_ LPVOID* ppv)
+STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
 {
 		return _AtlModule.DllGetClassObject(rclsid, riid, ppv);
 }
@@ -37,7 +36,7 @@ STDAPI DllUnregisterServer(void)
 }
 
 // DllInstall - Adds/Removes entries to the system registry per user per machine.
-STDAPI DllInstall(BOOL bInstall, _In_opt_  LPCWSTR pszCmdLine)
+STDAPI DllInstall(BOOL bInstall, LPCWSTR pszCmdLine)
 {
 	HRESULT hr = E_FAIL;
 	static const wchar_t szUserSwitch[] = L"user";

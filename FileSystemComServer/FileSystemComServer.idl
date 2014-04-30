@@ -9,26 +9,48 @@ import "ocidl.idl";
 
 [
 	object,
-	uuid(6E6ABDA4-9839-4AA4-A928-3120980115B5),
+	uuid(A9DCCC9E-5B5A-4E23-B726-259F223816AE),
 	dual,
 	nonextensible,
 	pointer_default(unique)
 ]
-interface IWorkFileSystem : IDispatch{
+interface IFileManagerCom : IDispatch{
+	[id(1)] HRESULT getFolder(BSTR path, VARIANT * names);
+	[id(2)] HRESULT getRoot(VARIANT * names);
+	[id(3)] HRESULT getListIcon([out] VARIANT * icons);
+	[id(4)] HRESULT OpenItem([in] BSTR path, [out] BOOL * isFolder);
+	[id(5)] HRESULT DeleteItem([in] BSTR path);
+	[id(6)] HRESULT CopyItem([in] const BSTR newPath, [in] const BSTR oldPath);
 };
+ 
 [
-	uuid(C395AD5D-3804-4035-88DB-2628C972906C),
+	uuid(052A1B68-7229-4196-8612-441AEF1683F0)
+]
+struct DataItem
+{
+	BSTR name;
+	BOOL isFolder;
+	//image
+	UINT id;
+	UINT idOpen;
+	BOOL haveSubFolder;
+};
+
+[
+	uuid(76333070-6F9C-416C-B18F-CDEFDFE5242D),
 	version(1.0),
 ]
 library FileSystemComServerLib
 {
 	importlib("stdole2.tlb");
 	[
-		uuid(EA48EB7E-7C33-49B8-86E8-CCDECAB12086)		
+		uuid(0FC9B050-6CD8-410E-A012-47EAAF58ADF7)
 	]
-	coclass WorkFileSystem
+	coclass FileManagerCom
 	{
-		[default] interface IWorkFileSystem;
+		[default] interface IFileManagerCom;
 	};
+
+	struct DataItem;
 };
 

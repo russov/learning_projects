@@ -5,11 +5,11 @@
 /* link this file in with the server and any clients */
 
 
- /* File created by MIDL compiler version 8.00.0603 */
-/* at Fri Mar 14 13:07:22 2014
+ /* File created by MIDL compiler version 7.00.0555 */
+/* at Thu May 01 00:21:09 2014
  */
 /* Compiler settings for FileSystemComServer.idl:
-    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
+    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
     VC __declspec() decoration level: 
@@ -67,13 +67,13 @@ typedef IID CLSID;
 
 #endif !_MIDL_USE_GUIDDEF_
 
-MIDL_DEFINE_GUID(IID, IID_IWorkFileSystem,0x6E6ABDA4,0x9839,0x4AA4,0xA9,0x28,0x31,0x20,0x98,0x01,0x15,0xB5);
+MIDL_DEFINE_GUID(IID, IID_IFileManagerCom,0xA9DCCC9E,0x5B5A,0x4E23,0xB7,0x26,0x25,0x9F,0x22,0x38,0x16,0xAE);
 
 
-MIDL_DEFINE_GUID(IID, LIBID_FileSystemComServerLib,0xC395AD5D,0x3804,0x4035,0x88,0xDB,0x26,0x28,0xC9,0x72,0x90,0x6C);
+MIDL_DEFINE_GUID(IID, LIBID_FileSystemComServerLib,0x76333070,0x6F9C,0x416C,0xB1,0x8F,0xCD,0xEF,0xDF,0xE5,0x24,0x2D);
 
 
-MIDL_DEFINE_GUID(CLSID, CLSID_WorkFileSystem,0xEA48EB7E,0x7C33,0x49B8,0x86,0xE8,0xCC,0xDE,0xCA,0xB1,0x20,0x86);
+MIDL_DEFINE_GUID(CLSID, CLSID_FileManagerCom,0x0FC9B050,0x6CD8,0x410E,0xA0,0x12,0x47,0xEA,0xAF,0x58,0xAD,0xF7);
 
 #undef MIDL_DEFINE_GUID
 

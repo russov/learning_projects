@@ -1,20 +1,18 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientFileManager", "ClientFileManager", "{A2A9F688-B332-487D-AAE4-8F3BE83070A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerFileManager", "ServerFileManager", "{B6F152CC-2006-44D9-B295-64D3A6E80483}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSystemComServer", "FileSystemComServer\FileSystemComServer.vcxproj", "{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSystemComClient", "FileSystemComClient\FileSystemComClient.vcxproj", "{C1B64889-1999-480D-B7E1-F241A34048A5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSystemComServerPS", "FileSystemComServer\FileSystemComServerPS.vcxproj", "{A8A7D08F-5961-478C-BABF-345DB70E7F23}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSystemComServer", "FileSystemComServer\FileSystemComServer.vcxproj", "{6CC1509B-2C21-4B4F-B178-4FDA5C8802C6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSystemComServerPS", "FileSystemComServer\FileSystemComServerPS.vcxproj", "{72C44579-DA24-4711-9828-1007E765BAB0}"
 	ProjectSection(ProjectDependencies) = postProject
-		{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8} = {CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8}
+		{6CC1509B-2C21-4B4F-B178-4FDA5C8802C6} = {6CC1509B-2C21-4B4F-B178-4FDA5C8802C6}
 	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSystemComClient", "FileSystemComClient\FileSystemComClient.vcxproj", "{74DC995F-9372-4DB5-820C-CF47A1A499B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,23 +20,23 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8}.Debug|Win32.ActiveCfg = Debug|Win32
-		{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8}.Debug|Win32.Build.0 = Debug|Win32
-		{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8}.Release|Win32.ActiveCfg = Release|Win32
-		{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8}.Release|Win32.Build.0 = Release|Win32
-		{A8A7D08F-5961-478C-BABF-345DB70E7F23}.Debug|Win32.ActiveCfg = Debug|Win32
-		{A8A7D08F-5961-478C-BABF-345DB70E7F23}.Release|Win32.ActiveCfg = Release|Win32
-		{74DC995F-9372-4DB5-820C-CF47A1A499B6}.Debug|Win32.ActiveCfg = Debug|Win32
-		{74DC995F-9372-4DB5-820C-CF47A1A499B6}.Debug|Win32.Build.0 = Debug|Win32
-		{74DC995F-9372-4DB5-820C-CF47A1A499B6}.Release|Win32.ActiveCfg = Release|Win32
-		{74DC995F-9372-4DB5-820C-CF47A1A499B6}.Release|Win32.Build.0 = Release|Win32
+		{C1B64889-1999-480D-B7E1-F241A34048A5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C1B64889-1999-480D-B7E1-F241A34048A5}.Debug|Win32.Build.0 = Debug|Win32
+		{C1B64889-1999-480D-B7E1-F241A34048A5}.Release|Win32.ActiveCfg = Release|Win32
+		{C1B64889-1999-480D-B7E1-F241A34048A5}.Release|Win32.Build.0 = Release|Win32
+		{6CC1509B-2C21-4B4F-B178-4FDA5C8802C6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6CC1509B-2C21-4B4F-B178-4FDA5C8802C6}.Debug|Win32.Build.0 = Debug|Win32
+		{6CC1509B-2C21-4B4F-B178-4FDA5C8802C6}.Release|Win32.ActiveCfg = Release|Win32
+		{6CC1509B-2C21-4B4F-B178-4FDA5C8802C6}.Release|Win32.Build.0 = Release|Win32
+		{72C44579-DA24-4711-9828-1007E765BAB0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{72C44579-DA24-4711-9828-1007E765BAB0}.Release|Win32.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{74DC995F-9372-4DB5-820C-CF47A1A499B6} = {A2A9F688-B332-487D-AAE4-8F3BE83070A5}
-		{CEEE12B7-62D7-4B12-A0A4-5519C4BDAAE8} = {B6F152CC-2006-44D9-B295-64D3A6E80483}
-		{A8A7D08F-5961-478C-BABF-345DB70E7F23} = {B6F152CC-2006-44D9-B295-64D3A6E80483}
+		{C1B64889-1999-480D-B7E1-F241A34048A5} = {A2A9F688-B332-487D-AAE4-8F3BE83070A5}
+		{6CC1509B-2C21-4B4F-B178-4FDA5C8802C6} = {B6F152CC-2006-44D9-B295-64D3A6E80483}
+		{72C44579-DA24-4711-9828-1007E765BAB0} = {B6F152CC-2006-44D9-B295-64D3A6E80483}
 	EndGlobalSection
 EndGlobal

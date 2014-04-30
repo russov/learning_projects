@@ -3,11 +3,11 @@
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
 
 
- /* File created by MIDL compiler version 8.00.0603 */
-/* at Fri Mar 14 13:07:22 2014
+ /* File created by MIDL compiler version 7.00.0555 */
+/* at Thu May 01 00:21:09 2014
  */
 /* Compiler settings for FileSystemComServer.idl:
-    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
+    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
     VC __declspec() decoration level: 
@@ -45,86 +45,101 @@
 
 /* Forward Declarations */ 
 
-#ifndef __IWorkFileSystem_FWD_DEFINED__
-#define __IWorkFileSystem_FWD_DEFINED__
-typedef interface IWorkFileSystem IWorkFileSystem;
+#ifndef __IFileManagerCom_FWD_DEFINED__
+#define __IFileManagerCom_FWD_DEFINED__
+typedef interface IFileManagerCom IFileManagerCom;
+#endif 	/* __IFileManagerCom_FWD_DEFINED__ */
 
-#endif 	/* __IWorkFileSystem_FWD_DEFINED__ */
 
-
-#ifndef __WorkFileSystem_FWD_DEFINED__
-#define __WorkFileSystem_FWD_DEFINED__
+#ifndef __FileManagerCom_FWD_DEFINED__
+#define __FileManagerCom_FWD_DEFINED__
 
 #ifdef __cplusplus
-typedef class WorkFileSystem WorkFileSystem;
+typedef class FileManagerCom FileManagerCom;
 #else
-typedef struct WorkFileSystem WorkFileSystem;
+typedef struct FileManagerCom FileManagerCom;
 #endif /* __cplusplus */
 
-#endif 	/* __WorkFileSystem_FWD_DEFINED__ */
+#endif 	/* __FileManagerCom_FWD_DEFINED__ */
 
 
 /* header files for imported files */
 #include "oaidl.h"
 #include "ocidl.h"
 
-#include <string>
-#include <vector>
-
 #ifdef __cplusplus
 extern "C"{
 #endif 
 
 
-#ifndef __IWorkFileSystem_INTERFACE_DEFINED__
-#define __IWorkFileSystem_INTERFACE_DEFINED__
+#ifndef __IFileManagerCom_INTERFACE_DEFINED__
+#define __IFileManagerCom_INTERFACE_DEFINED__
 
-/* interface IWorkFileSystem */
+/* interface IFileManagerCom */
 /* [unique][nonextensible][dual][uuid][object] */ 
 
 
-EXTERN_C const IID IID_IWorkFileSystem;
+EXTERN_C const IID IID_IFileManagerCom;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
-    MIDL_INTERFACE("6E6ABDA4-9839-4AA4-A928-3120980115B5")
-    IWorkFileSystem : public IDispatch
+    MIDL_INTERFACE("A9DCCC9E-5B5A-4E23-B726-259F223816AE")
+    IFileManagerCom : public IDispatch
     {
     public:
-		virtual HRESULT getNames(const std::string &path, std::vector<std::string>* names) = 0;
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE getFolder( 
+            BSTR path,
+            VARIANT *names) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE getRoot( 
+            VARIANT *names) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE getListIcon( 
+            /* [out] */ VARIANT *icons) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE OpenItem( 
+            /* [in] */ BSTR path,
+            /* [out] */ BOOL *isFolder) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE DeleteItem( 
+            /* [in] */ BSTR path) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE CopyItem( 
+            /* [in] */ const BSTR newPath,
+            /* [in] */ const BSTR oldPath) = 0;
+        
     };
-    
     
 #else 	/* C style interface */
 
-    typedef struct IWorkFileSystemVtbl
+    typedef struct IFileManagerComVtbl
     {
         BEGIN_INTERFACE
         
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IWorkFileSystem * This,
+            IFileManagerCom * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _COM_Outptr_  void **ppvObject);
+            __RPC__deref_out  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IWorkFileSystem * This);
+            IFileManagerCom * This);
         
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IWorkFileSystem * This);
+            IFileManagerCom * This);
         
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
-            IWorkFileSystem * This,
+            IFileManagerCom * This,
             /* [out] */ UINT *pctinfo);
         
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
-            IWorkFileSystem * This,
+            IFileManagerCom * This,
             /* [in] */ UINT iTInfo,
             /* [in] */ LCID lcid,
             /* [out] */ ITypeInfo **ppTInfo);
         
         HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
-            IWorkFileSystem * This,
+            IFileManagerCom * This,
             /* [in] */ REFIID riid,
             /* [size_is][in] */ LPOLESTR *rgszNames,
             /* [range][in] */ UINT cNames,
@@ -132,30 +147,49 @@ EXTERN_C const IID IID_IWorkFileSystem;
             /* [size_is][out] */ DISPID *rgDispId);
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
-            IWorkFileSystem * This,
-            /* [annotation][in] */ 
-            _In_  DISPID dispIdMember,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
-            /* [annotation][in] */ 
-            _In_  LCID lcid,
-            /* [annotation][in] */ 
-            _In_  WORD wFlags,
-            /* [annotation][out][in] */ 
-            _In_  DISPPARAMS *pDispParams,
-            /* [annotation][out] */ 
-            _Out_opt_  VARIANT *pVarResult,
-            /* [annotation][out] */ 
-            _Out_opt_  EXCEPINFO *pExcepInfo,
-            /* [annotation][out] */ 
-            _Out_opt_  UINT *puArgErr);
+            IFileManagerCom * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS *pDispParams,
+            /* [out] */ VARIANT *pVarResult,
+            /* [out] */ EXCEPINFO *pExcepInfo,
+            /* [out] */ UINT *puArgErr);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *getFolder )( 
+            IFileManagerCom * This,
+            BSTR path,
+            VARIANT *names);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *getRoot )( 
+            IFileManagerCom * This,
+            VARIANT *names);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *getListIcon )( 
+            IFileManagerCom * This,
+            /* [out] */ VARIANT *icons);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *OpenItem )( 
+            IFileManagerCom * This,
+            /* [in] */ BSTR path,
+            /* [out] */ BOOL *isFolder);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *DeleteItem )( 
+            IFileManagerCom * This,
+            /* [in] */ BSTR path);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *CopyItem )( 
+            IFileManagerCom * This,
+            /* [in] */ const BSTR newPath,
+            /* [in] */ const BSTR oldPath);
         
         END_INTERFACE
-    } IWorkFileSystemVtbl;
+    } IFileManagerComVtbl;
 
-    interface IWorkFileSystem
+    interface IFileManagerCom
     {
-        CONST_VTBL struct IWorkFileSystemVtbl *lpVtbl;
+        CONST_VTBL struct IFileManagerComVtbl *lpVtbl;
     };
 
     
@@ -163,28 +197,46 @@ EXTERN_C const IID IID_IWorkFileSystem;
 #ifdef COBJMACROS
 
 
-#define IWorkFileSystem_QueryInterface(This,riid,ppvObject)	\
+#define IFileManagerCom_QueryInterface(This,riid,ppvObject)	\
     ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
 
-#define IWorkFileSystem_AddRef(This)	\
+#define IFileManagerCom_AddRef(This)	\
     ( (This)->lpVtbl -> AddRef(This) ) 
 
-#define IWorkFileSystem_Release(This)	\
+#define IFileManagerCom_Release(This)	\
     ( (This)->lpVtbl -> Release(This) ) 
 
 
-#define IWorkFileSystem_GetTypeInfoCount(This,pctinfo)	\
+#define IFileManagerCom_GetTypeInfoCount(This,pctinfo)	\
     ( (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo) ) 
 
-#define IWorkFileSystem_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+#define IFileManagerCom_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
     ( (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo) ) 
 
-#define IWorkFileSystem_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+#define IFileManagerCom_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
     ( (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId) ) 
 
-#define IWorkFileSystem_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+#define IFileManagerCom_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
     ( (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr) ) 
 
+
+#define IFileManagerCom_getFolder(This,path,names)	\
+    ( (This)->lpVtbl -> getFolder(This,path,names) ) 
+
+#define IFileManagerCom_getRoot(This,names)	\
+    ( (This)->lpVtbl -> getRoot(This,names) ) 
+
+#define IFileManagerCom_getListIcon(This,icons)	\
+    ( (This)->lpVtbl -> getListIcon(This,icons) ) 
+
+#define IFileManagerCom_OpenItem(This,path,isFolder)	\
+    ( (This)->lpVtbl -> OpenItem(This,path,isFolder) ) 
+
+#define IFileManagerCom_DeleteItem(This,path)	\
+    ( (This)->lpVtbl -> DeleteItem(This,path) ) 
+
+#define IFileManagerCom_CopyItem(This,newPath,oldPath)	\
+    ( (This)->lpVtbl -> CopyItem(This,newPath,oldPath) ) 
 
 #endif /* COBJMACROS */
 
@@ -194,8 +246,24 @@ EXTERN_C const IID IID_IWorkFileSystem;
 
 
 
-#endif 	/* __IWorkFileSystem_INTERFACE_DEFINED__ */
+#endif 	/* __IFileManagerCom_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_FileSystemComServer_0000_0001 */
+/* [local] */ 
+
+/* [uuid] */ struct  DECLSPEC_UUID("052A1B68-7229-4196-8612-441AEF1683F0") DataItem
+    {
+    BSTR name;
+    BOOL isFolder;
+    UINT id;
+    UINT idOpen;
+    BOOL haveSubFolder;
+    } ;
+
+
+extern RPC_IF_HANDLE __MIDL_itf_FileSystemComServer_0000_0001_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_FileSystemComServer_0000_0001_v0_0_s_ifspec;
 
 
 #ifndef __FileSystemComServerLib_LIBRARY_DEFINED__
@@ -205,18 +273,29 @@ EXTERN_C const IID IID_IWorkFileSystem;
 /* [version][uuid] */ 
 
 
+
 EXTERN_C const IID LIBID_FileSystemComServerLib;
 
-EXTERN_C const CLSID CLSID_WorkFileSystem;
+EXTERN_C const CLSID CLSID_FileManagerCom;
 
 #ifdef __cplusplus
 
-class DECLSPEC_UUID("EA48EB7E-7C33-49B8-86E8-CCDECAB12086")
-WorkFileSystem;
+class DECLSPEC_UUID("0FC9B050-6CD8-410E-A012-47EAAF58ADF7")
+FileManagerCom;
 #endif
 #endif /* __FileSystemComServerLib_LIBRARY_DEFINED__ */
 
 /* Additional Prototypes for ALL interfaces */
+
+unsigned long             __RPC_USER  BSTR_UserSize(     unsigned long *, unsigned long            , BSTR * ); 
+unsigned char * __RPC_USER  BSTR_UserMarshal(  unsigned long *, unsigned char *, BSTR * ); 
+unsigned char * __RPC_USER  BSTR_UserUnmarshal(unsigned long *, unsigned char *, BSTR * ); 
+void                      __RPC_USER  BSTR_UserFree(     unsigned long *, BSTR * ); 
+
+unsigned long             __RPC_USER  VARIANT_UserSize(     unsigned long *, unsigned long            , VARIANT * ); 
+unsigned char * __RPC_USER  VARIANT_UserMarshal(  unsigned long *, unsigned char *, VARIANT * ); 
+unsigned char * __RPC_USER  VARIANT_UserUnmarshal(unsigned long *, unsigned char *, VARIANT * ); 
+void                      __RPC_USER  VARIANT_UserFree(     unsigned long *, VARIANT * ); 
 
 /* end of Additional Prototypes */
 

@@ -16,6 +16,20 @@
 
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// some CString constructors will be explicit
 
+#include <afxwin.h>
+#include <afxext.h>
+#include <afxole.h>
+#include <afxodlgs.h>
+#include <afxrich.h>
+#include <afxhtml.h>
+#include <afxcview.h>
+#include <afxwinappex.h>
+#include <afxframewndex.h>
+#include <afxmdiframewndex.h>
+
+#ifndef _AFX_NO_OLE_SUPPORT
+#include <afxdisp.h>        // MFC Automation classes
+#endif // _AFX_NO_OLE_SUPPORT
 
 #define ATL_NO_ASSERT_ON_DESTROY_NONEXISTENT_WINDOW
 

@@ -81,3 +81,9 @@ FileSystemComServerps.def
     required by the proxy/stub.
 
 /////////////////////////////////////////////////////////////////////////////
+Other notes:
+
+
+	The MFC Support option builds the Microsoft Foundation Class libraries into your skeleton application,
+	making MFC classes, objects and functions available to you.
+/////////////////////////////////////////////////////////////////////////////

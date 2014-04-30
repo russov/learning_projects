@@ -7,9 +7,28 @@
 
 CFileSystemComServerModule _AtlModule;
 
-// DLL Entry Point
-extern "C" BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
+class CFileSystemComServerApp : public CWinApp
 {
-	hInstance;
-	return _AtlModule.DllMain(dwReason, lpReserved); 
+public:
+
+// Overrides
+	virtual BOOL InitInstance();
+	virtual int ExitInstance();
+
+	DECLARE_MESSAGE_MAP()
+};
+
+BEGIN_MESSAGE_MAP(CFileSystemComServerApp, CWinApp)
+END_MESSAGE_MAP()
+
+CFileSystemComServerApp theApp;
+
+BOOL CFileSystemComServerApp::InitInstance()
+{
+	return CWinApp::InitInstance();
+}
+
+int CFileSystemComServerApp::ExitInstance()
+{
+	return CWinApp::ExitInstance();
 }
