@@ -54,12 +54,14 @@ protected:
 	bool isFolder(const CString &path);
 	
 public:
-	STDMETHOD(getFolder)(BSTR path, VARIANT * names);
-	STDMETHOD(getRoot)(VARIANT * names);
-	STDMETHOD(getListIcon)(VARIANT * icons);
+	STDMETHOD(GetFolder)(BSTR path, VARIANT * names);
+	STDMETHOD(GetRoot)(VARIANT * names);
+	STDMETHOD(GetListIcon)(VARIANT * icons);
 	STDMETHOD(OpenItem)(BSTR path, BOOL * isFolder);
 	STDMETHOD(DeleteItem)(BSTR path);
 	STDMETHOD(CopyItem)(const BSTR newPath, const BSTR oldPath);
+	STDMETHOD(MoveItem)(const BSTR newPath, const BSTR oldPath);
+	STDMETHOD(RenameItem)(const BSTR newPath, const BSTR oldPath);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(FileManagerCom), CFileManagerCom)

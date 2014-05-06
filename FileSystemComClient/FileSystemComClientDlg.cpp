@@ -136,7 +136,7 @@ BOOL CFileSystemComClientDlg::OnInitDialog()
 	
 	VARIANT icons;
 
-	hr = fmc->getListIcon(&icons);
+	hr = fmc->GetListIcon(&icons);
 
 	HIMAGELIST hImg = (HIMAGELIST)icons.byref;
 
@@ -147,7 +147,7 @@ BOOL CFileSystemComClientDlg::OnInitDialog()
 	}
 	VARIANT names;
 	
-	hr = fmc->getRoot(&names);
+	hr = fmc->GetRoot(&names);
 	
 	SAFEARRAY *psa = V_ARRAY(&names);
 
@@ -318,7 +318,7 @@ void CFileSystemComClientDlg::OnTvnSelchangedTreeFileSystem(NMHDR *pNMHDR, LRESU
 	HRESULT hr;
 	VARIANT names;
 
-	fmc->getFolder(path.AllocSysString(), &names);
+	fmc->GetFolder(path.AllocSysString(), &names);
 	
 	HTREEITEM hTempItem = m_TreeControl.GetNextItem(hSelectedItem,TVGN_CHILD);
 	

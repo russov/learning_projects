@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Thu May 01 00:21:09 2014
+/* at Tue May 06 22:59:38 2014
  */
 /* Compiler settings for FileSystemComServer.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
@@ -50,7 +50,7 @@
 #include "FileSystemComServer_i.h"
 
 #define TYPE_FORMAT_STRING_SIZE   1071                              
-#define PROC_FORMAT_STRING_SIZE   235                               
+#define PROC_FORMAT_STRING_SIZE   319                               
 #define EXPR_FORMAT_STRING_SIZE   1                                 
 #define TRANSMIT_AS_TABLE_SIZE    0            
 #define WIRE_MARSHAL_TABLE_SIZE   2            
@@ -109,7 +109,7 @@ static const FileSystemComServer_MIDL_PROC_FORMAT_STRING FileSystemComServer__MI
         0,
         {
 
-	/* Procedure getFolder */
+	/* Procedure GetFolder */
 
 			0x33,		/* FC_AUTO_HANDLE */
 			0x6c,		/* Old Flags:  object, Oi2 */
@@ -145,7 +145,7 @@ static const FileSystemComServer_MIDL_PROC_FORMAT_STRING FileSystemComServer__MI
 /* 40 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
-	/* Procedure getRoot */
+	/* Procedure GetRoot */
 
 /* 42 */	0x33,		/* FC_AUTO_HANDLE */
 			0x6c,		/* Old Flags:  object, Oi2 */
@@ -175,7 +175,7 @@ static const FileSystemComServer_MIDL_PROC_FORMAT_STRING FileSystemComServer__MI
 /* 76 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
-	/* Procedure getListIcon */
+	/* Procedure GetListIcon */
 
 /* 78 */	0x33,		/* FC_AUTO_HANDLE */
 			0x6c,		/* Old Flags:  object, Oi2 */
@@ -306,6 +306,78 @@ static const FileSystemComServer_MIDL_PROC_FORMAT_STRING FileSystemComServer__MI
 /* 228 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
 /* 230 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
 /* 232 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Procedure MoveItem */
+
+/* 234 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 236 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 240 */	NdrFcShort( 0xd ),	/* 13 */
+/* 242 */	NdrFcShort( 0x10 ),	/* x86 Stack size/offset = 16 */
+/* 244 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 246 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 248 */	0x46,		/* Oi2 Flags:  clt must size, has return, has ext, */
+			0x3,		/* 3 */
+/* 250 */	0x8,		/* 8 */
+			0x5,		/* Ext Flags:  new corr desc, srv corr check, */
+/* 252 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 254 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 256 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter newPath */
+
+/* 258 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
+/* 260 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 262 */	NdrFcShort( 0x1c ),	/* Type Offset=28 */
+
+	/* Parameter oldPath */
+
+/* 264 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
+/* 266 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 268 */	NdrFcShort( 0x1c ),	/* Type Offset=28 */
+
+	/* Return value */
+
+/* 270 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 272 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 274 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Procedure RenameItem */
+
+/* 276 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 278 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 282 */	NdrFcShort( 0xe ),	/* 14 */
+/* 284 */	NdrFcShort( 0x10 ),	/* x86 Stack size/offset = 16 */
+/* 286 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 288 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 290 */	0x46,		/* Oi2 Flags:  clt must size, has return, has ext, */
+			0x3,		/* 3 */
+/* 292 */	0x8,		/* 8 */
+			0x5,		/* Ext Flags:  new corr desc, srv corr check, */
+/* 294 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 296 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 298 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter newPath */
+
+/* 300 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
+/* 302 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 304 */	NdrFcShort( 0x1c ),	/* Type Offset=28 */
+
+	/* Parameter oldPath */
+
+/* 306 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
+/* 308 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 310 */	NdrFcShort( 0x1c ),	/* Type Offset=28 */
+
+	/* Return value */
+
+/* 312 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 314 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 316 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
 			0x0
@@ -1086,7 +1158,9 @@ static const unsigned short IFileManagerCom_FormatStringOffsetTable[] =
     78,
     114,
     156,
-    192
+    192,
+    234,
+    276
     };
 
 static const MIDL_STUBLESS_PROXY_INFO IFileManagerCom_ProxyInfo =
@@ -1110,7 +1184,7 @@ static const MIDL_SERVER_INFO IFileManagerCom_ServerInfo =
     0,
     0,
     0};
-CINTERFACE_PROXY_VTABLE(13) _IFileManagerComProxyVtbl = 
+CINTERFACE_PROXY_VTABLE(15) _IFileManagerComProxyVtbl = 
 {
     &IFileManagerCom_ProxyInfo,
     &IID_IFileManagerCom,
@@ -1121,12 +1195,14 @@ CINTERFACE_PROXY_VTABLE(13) _IFileManagerComProxyVtbl =
     0 /* IDispatch::GetTypeInfo */ ,
     0 /* IDispatch::GetIDsOfNames */ ,
     0 /* IDispatch_Invoke_Proxy */ ,
-    (void *) (INT_PTR) -1 /* IFileManagerCom::getFolder */ ,
-    (void *) (INT_PTR) -1 /* IFileManagerCom::getRoot */ ,
-    (void *) (INT_PTR) -1 /* IFileManagerCom::getListIcon */ ,
+    (void *) (INT_PTR) -1 /* IFileManagerCom::GetFolder */ ,
+    (void *) (INT_PTR) -1 /* IFileManagerCom::GetRoot */ ,
+    (void *) (INT_PTR) -1 /* IFileManagerCom::GetListIcon */ ,
     (void *) (INT_PTR) -1 /* IFileManagerCom::OpenItem */ ,
     (void *) (INT_PTR) -1 /* IFileManagerCom::DeleteItem */ ,
-    (void *) (INT_PTR) -1 /* IFileManagerCom::CopyItem */
+    (void *) (INT_PTR) -1 /* IFileManagerCom::CopyItem */ ,
+    (void *) (INT_PTR) -1 /* IFileManagerCom::MoveItem */ ,
+    (void *) (INT_PTR) -1 /* IFileManagerCom::RenameItem */
 };
 
 
@@ -1141,6 +1217,8 @@ static const PRPC_STUB_FUNCTION IFileManagerCom_table[] =
     NdrStubCall2,
     NdrStubCall2,
     NdrStubCall2,
+    NdrStubCall2,
+    NdrStubCall2,
     NdrStubCall2
 };
 
@@ -1148,7 +1226,7 @@ CInterfaceStubVtbl _IFileManagerComStubVtbl =
 {
     &IID_IFileManagerCom,
     &IFileManagerCom_ServerInfo,
-    13,
+    15,
     &IFileManagerCom_table[-3],
     CStdStubBuffer_DELEGATING_METHODS
 };
