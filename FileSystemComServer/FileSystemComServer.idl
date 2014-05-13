@@ -23,6 +23,7 @@ interface IFileManagerCom : IDispatch{
 	[id(6)] HRESULT CopyItem([in] const BSTR newPath, [in] const BSTR oldPath);
 	[id(7)] HRESULT MoveItem([in] const BSTR newPath, [in] const BSTR oldPath);
 	[id(8)] HRESULT RenameItem([in] const BSTR newPath, [in] const BSTR oldPath);
+	[id(9)] HRESULT ShowProperties([in] BSTR path);
 };
  
 [

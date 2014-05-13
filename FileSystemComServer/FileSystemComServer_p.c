@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Tue May 06 22:59:38 2014
+/* at Fri May 09 09:44:22 2014
  */
 /* Compiler settings for FileSystemComServer.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
@@ -50,7 +50,7 @@
 #include "FileSystemComServer_i.h"
 
 #define TYPE_FORMAT_STRING_SIZE   1071                              
-#define PROC_FORMAT_STRING_SIZE   319                               
+#define PROC_FORMAT_STRING_SIZE   355                               
 #define EXPR_FORMAT_STRING_SIZE   1                                 
 #define TRANSMIT_AS_TABLE_SIZE    0            
 #define WIRE_MARSHAL_TABLE_SIZE   2            
@@ -378,6 +378,36 @@ static const FileSystemComServer_MIDL_PROC_FORMAT_STRING FileSystemComServer__MI
 /* 312 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
 /* 314 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
 /* 316 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Procedure ShowProperties */
+
+/* 318 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 320 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 324 */	NdrFcShort( 0xf ),	/* 15 */
+/* 326 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 328 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 330 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 332 */	0x46,		/* Oi2 Flags:  clt must size, has return, has ext, */
+			0x2,		/* 2 */
+/* 334 */	0x8,		/* 8 */
+			0x5,		/* Ext Flags:  new corr desc, srv corr check, */
+/* 336 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 338 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 340 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter path */
+
+/* 342 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
+/* 344 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 346 */	NdrFcShort( 0x1c ),	/* Type Offset=28 */
+
+	/* Return value */
+
+/* 348 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 350 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 352 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
 			0x0
@@ -1160,7 +1190,8 @@ static const unsigned short IFileManagerCom_FormatStringOffsetTable[] =
     156,
     192,
     234,
-    276
+    276,
+    318
     };
 
 static const MIDL_STUBLESS_PROXY_INFO IFileManagerCom_ProxyInfo =
@@ -1184,7 +1215,7 @@ static const MIDL_SERVER_INFO IFileManagerCom_ServerInfo =
     0,
     0,
     0};
-CINTERFACE_PROXY_VTABLE(15) _IFileManagerComProxyVtbl = 
+CINTERFACE_PROXY_VTABLE(16) _IFileManagerComProxyVtbl = 
 {
     &IFileManagerCom_ProxyInfo,
     &IID_IFileManagerCom,
@@ -1202,7 +1233,8 @@ CINTERFACE_PROXY_VTABLE(15) _IFileManagerComProxyVtbl =
     (void *) (INT_PTR) -1 /* IFileManagerCom::DeleteItem */ ,
     (void *) (INT_PTR) -1 /* IFileManagerCom::CopyItem */ ,
     (void *) (INT_PTR) -1 /* IFileManagerCom::MoveItem */ ,
-    (void *) (INT_PTR) -1 /* IFileManagerCom::RenameItem */
+    (void *) (INT_PTR) -1 /* IFileManagerCom::RenameItem */ ,
+    (void *) (INT_PTR) -1 /* IFileManagerCom::ShowProperties */
 };
 
 
@@ -1219,6 +1251,7 @@ static const PRPC_STUB_FUNCTION IFileManagerCom_table[] =
     NdrStubCall2,
     NdrStubCall2,
     NdrStubCall2,
+    NdrStubCall2,
     NdrStubCall2
 };
 
@@ -1226,7 +1259,7 @@ CInterfaceStubVtbl _IFileManagerComStubVtbl =
 {
     &IID_IFileManagerCom,
     &IFileManagerCom_ServerInfo,
-    15,
+    16,
     &IFileManagerCom_table[-3],
     CStdStubBuffer_DELEGATING_METHODS
 };
