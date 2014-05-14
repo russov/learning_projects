@@ -72,7 +72,6 @@ BEGIN_MESSAGE_MAP(CFileSystemComClientDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_NOTIFY(NM_RCLICK, IDC_TREE_FILE_SYSTEM, &CFileSystemComClientDlg::OnNMRClickTreeFileSystem)
-	ON_NOTIFY(TVN_ITEMCHANGED, IDC_TREE_FILE_SYSTEM, &CFileSystemComClientDlg::OnTvnItemChangedTreeFileSystem)
 	ON_NOTIFY(TVN_SELCHANGED, IDC_TREE_FILE_SYSTEM, &CFileSystemComClientDlg::OnTvnSelchangedTreeFileSystem)
 	ON_NOTIFY(NM_DBLCLK, IDC_LIST, &CFileSystemComClientDlg::OnNMDblclkList)
 	ON_NOTIFY(TVN_ITEMEXPANDED, IDC_TREE_FILE_SYSTEM, &CFileSystemComClientDlg::OnTvnItemexpandedTreeFileSystem)
@@ -237,18 +236,6 @@ void CFileSystemComClientDlg::OnNMRClickTreeFileSystem(NMHDR *pNMHDR, LRESULT *p
 	*pResult = 0;
 }
 
-
-void CFileSystemComClientDlg::OnTvnItemChangedTreeFileSystem(NMHDR *pNMHDR, LRESULT *pResult)
-{
-	NMTVITEMCHANGE *pNMTVItemChange = reinterpret_cast<NMTVITEMCHANGE*>(pNMHDR);
-	// TODO: Add your control notification handler code here
-
-
-	
-
-	*pResult = 1;
-}
-
 void CFileSystemComClientDlg::ClearAllChildOnBranch(const HTREEITEM item)
 {
 	HTREEITEM hChildItem;
@@ -258,7 +245,8 @@ void CFileSystemComClientDlg::ClearAllChildOnBranch(const HTREEITEM item)
 	while (hChildItem != NULL)
 	{
 		HTREEITEM tempItem = hChildItem;
-		hChildItem = m_TreeControl.GetNextItem(hChildItem,TVGN_CHILD);
+		ClearAllChildOnBranch(hChildItem);
+		hChildItem = m_TreeControl.GetNextItem(hChildItem,TVGN_NEXT);
 		m_TreeControl.DeleteItem(tempItem);
 	}
 }

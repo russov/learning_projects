@@ -51,7 +51,6 @@ private:
 	
 public:
 	afx_msg void OnNMRClickTreeFileSystem(NMHDR *pNMHDR, LRESULT *pResult);
-	afx_msg void OnTvnItemChangedTreeFileSystem(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnTvnSelchangedTreeFileSystem(NMHDR *pNMHDR, LRESULT *pResult);
 
 	afx_msg void OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult);

@@ -126,6 +126,7 @@
     <ResourceCompile Include="FileSystemComClient.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\FileSystemComClient.ico" />
     <None Include="res\FileSystemComClient.rc2" />
   </ItemGroup>
   <ItemGroup>
