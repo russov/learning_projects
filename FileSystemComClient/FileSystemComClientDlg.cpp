@@ -135,7 +135,7 @@ BOOL CFileSystemComClientDlg::OnInitDialog()
 	
 	VARIANT icons;
 
-	hr = fmc->getListIcon(&icons);
+	hr = fmc->GetListIcon(&icons);
 
 	HIMAGELIST hImg = (HIMAGELIST)icons.byref;
 
@@ -146,7 +146,7 @@ BOOL CFileSystemComClientDlg::OnInitDialog()
 	}
 	VARIANT names;
 	
-	hr = fmc->getRoot(&names);
+	hr = fmc->GetRoot(&names);
 	
 	SAFEARRAY *psa = V_ARRAY(&names);
 
@@ -306,7 +306,7 @@ void CFileSystemComClientDlg::OnTvnSelchangedTreeFileSystem(NMHDR *pNMHDR, LRESU
 	HRESULT hr;
 	VARIANT names;
 
-	fmc->getFolder(path.AllocSysString(), &names);
+	fmc->GetFolder(path.AllocSysString(), &names);
 	
 	HTREEITEM hTempItem = m_TreeControl.GetNextItem(hSelectedItem,TVGN_CHILD);
 	
@@ -476,15 +476,16 @@ void CFileSystemComClientDlg::OnPaste()
 		return;
 	}
 
-	HRESULT hr = fmc->CopyItem((GetPathToItemTree(m_TreeControl.GetSelectedItem())/* + CString("")*/).AllocSysString(), m_PathToCopyingFile.AllocSysString());
-
 	if (m_IsCutButton)
 	{
-		OnDelete();
+		HRESULT hr = fmc->MoveItem((GetPathToItemTree(m_TreeControl.GetSelectedItem())).AllocSysString(), m_PathToCopyingFile.AllocSysString());
 		m_PathToCopyingFile = CString("");
 		m_IsCutButton = false;	
+	} else
+	{
+		HRESULT hr = fmc->CopyItem((GetPathToItemTree(m_TreeControl.GetSelectedItem())).AllocSysString(), m_PathToCopyingFile.AllocSysString());
 	}
-
+		
 	HTREEITEM hItem = m_TreeControl.GetSelectedItem();
 	m_TreeControl.Select(NULL, TVGN_CARET);
 	m_TreeControl.Select(hItem, TVGN_CARET);
@@ -505,24 +506,43 @@ void CFileSystemComClientDlg::OnDelete()
 		return;
 	}
 
-	if (m_IsCutButton)
-	{
-		HRESULT hr = fmc->DeleteItem(m_PathToCopyingFile.AllocSysString());
-	}
-	else
-	{
-		HRESULT hr = fmc->DeleteItem(GetPathToSelectedItemList().AllocSysString());
+	HRESULT hr = fmc->DeleteItem(GetPathToSelectedItemList().AllocSysString());
 
-		HTREEITEM hItem = m_TreeControl.GetSelectedItem();
-		m_TreeControl.Select(NULL, TVGN_CARET);
-		m_TreeControl.Select(hItem, TVGN_CARET);
-	}
+	HTREEITEM hItem = m_TreeControl.GetSelectedItem();
+	m_TreeControl.Select(NULL, TVGN_CARET);
+	m_TreeControl.Select(hItem, TVGN_CARET);
 }
 
 
 void CFileSystemComClientDlg::OnRename()
 {
-	// TODO: Add your command handler code here
+	/*if (m_PathToCopyingFile.IsEmpty())
+		return;
+
+	::CoInitialize(NULL);
+	IFileManagerCom *fmc = NULL;
+	
+	HRESULT hResult = ::CoCreateInstance(CLSID_FileManagerCom, NULL, CLSCTX_INPROC_SERVER, IID_IFileManagerCom, (LPVOID*)&fmc);
+
+	if (FAILED(hResult))
+	{
+		MessageBox(L"Failed in creating COM Component", L"Error", MB_ICONERROR);
+		return;
+	}
+
+	if (m_IsCutButton)
+	{
+		HRESULT hr = fmc->MoveItem((GetPathToItemTree(m_TreeControl.GetSelectedItem())).AllocSysString(), m_PathToCopyingFile.AllocSysString());
+		m_PathToCopyingFile = CString("");
+		m_IsCutButton = false;	
+	} else
+	{
+		HRESULT hr = fmc->CopyItem((GetPathToItemTree(m_TreeControl.GetSelectedItem())).AllocSysString(), m_PathToCopyingFile.AllocSysString());
+	}
+		
+	HTREEITEM hItem = m_TreeControl.GetSelectedItem();
+	m_TreeControl.Select(NULL, TVGN_CARET);
+	m_TreeControl.Select(hItem, TVGN_CARET);*/
 }
 
 

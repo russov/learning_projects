@@ -52,14 +52,18 @@ END_COM_MAP()
 protected:
 	bool hasSubFolder(const CString &path);
 	bool isFolder(const CString &path);
+	STDMETHODIMP ProcessFile(UINT operation, BSTR newPath, BSTR oldPath = L"");
 	
 public:
-	STDMETHOD(getFolder)(BSTR path, VARIANT * names);
-	STDMETHOD(getRoot)(VARIANT * names);
-	STDMETHOD(getListIcon)(VARIANT * icons);
+	STDMETHOD(GetFolder)(BSTR path, VARIANT * names);
+	STDMETHOD(GetRoot)(VARIANT * names);
+	STDMETHOD(GetListIcon)(VARIANT * icons);
 	STDMETHOD(OpenItem)(BSTR path, BOOL * isFolder);
 	STDMETHOD(DeleteItem)(BSTR path);
-	STDMETHOD(CopyItem)(const BSTR newPath, const BSTR oldPath);
+	STDMETHOD(CopyItem)(BSTR newPath, BSTR oldPath);
+	STDMETHOD(MoveItem)(BSTR newPath, BSTR oldPath);
+	STDMETHOD(RenameItem)(BSTR newPath, BSTR oldPath);
+	STDMETHOD(ShowProperties)(BSTR path);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(FileManagerCom), CFileManagerCom)

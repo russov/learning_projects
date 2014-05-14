@@ -27,7 +27,35 @@ bool CFileManagerCom::isFolder(const CString &path)
 	return false;
 }
 
-STDMETHODIMP CFileManagerCom::getFolder(BSTR path, VARIANT * names)
+STDMETHODIMP CFileManagerCom::ProcessFile(UINT operation, BSTR newPath, BSTR oldPath)
+{
+	AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+	std::string wszBuffer;
+	
+	TCHAR bufIn[_MAX_PATH + 1]; 
+	_tcscpy(bufIn, CString(newPath));   
+    bufIn[_tcslen(bufIn)+1]=0;    
+ 
+	TCHAR bufOut[_MAX_PATH + 1]; 
+	_tcscpy(bufOut, CString(oldPath));   
+    bufOut[_tcslen(bufOut)+1]=0;  
+
+	SHFILEOPSTRUCT lpFileOp;
+	lpFileOp.hwnd=NULL;
+	lpFileOp.wFunc=operation;
+	lpFileOp.pFrom= bufOut;  
+	lpFileOp.pTo=bufIn;
+    lpFileOp.fFlags=FOF_NOCONFIRMATION;
+    lpFileOp.hNameMappings=NULL;
+    lpFileOp.lpszProgressTitle=NULL;
+    
+	SHFileOperation(&lpFileOp);
+	
+	return S_OK;
+}
+
+STDMETHODIMP CFileManagerCom::GetFolder(BSTR path, VARIANT * names)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
@@ -84,7 +112,7 @@ STDMETHODIMP CFileManagerCom::getFolder(BSTR path, VARIANT * names)
 	return S_OK;
 }
 
-STDMETHODIMP CFileManagerCom::getRoot(VARIANT * names)
+STDMETHODIMP CFileManagerCom::GetRoot(VARIANT * names)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState());
 	
@@ -153,7 +181,7 @@ STDMETHODIMP CFileManagerCom::getRoot(VARIANT * names)
 	return S_OK;
 }
 
-STDMETHODIMP CFileManagerCom::getListIcon(VARIANT * icons)
+STDMETHODIMP CFileManagerCom::GetListIcon(VARIANT * icons)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState());
 	
@@ -186,57 +214,27 @@ STDMETHODIMP CFileManagerCom::DeleteItem(BSTR path)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
-	std::string wszBuffer;
-	
-	TCHAR bufIn[_MAX_PATH + 1]; 
-	_tcscpy(bufIn, CString(path));   
-    bufIn[_tcslen(bufIn)+1]=0;    
- 
-	TCHAR bufOut[_MAX_PATH + 1]; 
-	_tcscpy(bufOut, CString(path));   
-    bufOut[_tcslen(bufOut)+1]=0;  
-
-	SHFILEOPSTRUCT lpFileOp;
-	lpFileOp.hwnd=NULL;
-	lpFileOp.wFunc=FO_DELETE;
-	lpFileOp.pFrom=bufOut;
-	lpFileOp.pTo=bufIn;
-    lpFileOp.fFlags=FOF_NOCONFIRMATION;
-    lpFileOp.hNameMappings=NULL;
-    lpFileOp.lpszProgressTitle=NULL;
-    
-	SHFileOperation(&lpFileOp);
-
-	return S_OK;
+	return ProcessFile(FO_DELETE, path);
 }
 
 
-STDMETHODIMP CFileManagerCom::CopyItem(const BSTR newPath, const BSTR oldPath)
+STDMETHODIMP CFileManagerCom::CopyItem(BSTR newPath, BSTR oldPath)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
-	std::string wszBuffer;
-	
-	TCHAR bufIn[_MAX_PATH + 1]; 
-	_tcscpy(bufIn, CString(newPath));   
-    bufIn[_tcslen(bufIn)+1]=0;    
- 
-	TCHAR bufOut[_MAX_PATH + 1]; 
-	_tcscpy(bufOut, CString(oldPath));   
-    bufOut[_tcslen(bufOut)+1]=0;  
+	return ProcessFile(FO_COPY, newPath, oldPath);
+}
 
-	SHFILEOPSTRUCT lpFileOp;
-	lpFileOp.hwnd=NULL;
-	lpFileOp.wFunc=FO_COPY;
-	lpFileOp.pFrom= bufOut;//oldPath;//L"d:\\temp\\new3.txt";    
-		//;
-	lpFileOp.pTo=bufIn;//newPath; //L"d:\\temp\\tt";
-		//newPath;
-    lpFileOp.fFlags=FOF_NOCONFIRMATION;
-    lpFileOp.hNameMappings=NULL;
-    lpFileOp.lpszProgressTitle=NULL;
-    
-	SHFileOperation(&lpFileOp);
-	
-	return S_OK;
+STDMETHODIMP CFileManagerCom::MoveItem(BSTR newPath, BSTR oldPath)
+{
+	AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+	return ProcessFile(FO_MOVE, newPath, oldPath);
+}
+
+STDMETHODIMP CFileManagerCom::RenameItem(BSTR newPath, BSTR oldPath)
+{
+	AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+	return ProcessFile(FO_RENAME, newPath, oldPath);
 }

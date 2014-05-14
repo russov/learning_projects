@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Fri May 02 13:42:46 2014
+/* at Fri May 09 09:44:22 2014
  */
 /* Compiler settings for FileSystemComServer.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
@@ -87,14 +87,14 @@ EXTERN_C const IID IID_IFileManagerCom;
     IFileManagerCom : public IDispatch
     {
     public:
-        virtual /* [id] */ HRESULT STDMETHODCALLTYPE getFolder( 
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE GetFolder( 
             BSTR path,
             VARIANT *names) = 0;
         
-        virtual /* [id] */ HRESULT STDMETHODCALLTYPE getRoot( 
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE GetRoot( 
             VARIANT *names) = 0;
         
-        virtual /* [id] */ HRESULT STDMETHODCALLTYPE getListIcon( 
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE GetListIcon( 
             /* [out] */ VARIANT *icons) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE OpenItem( 
@@ -107,6 +107,17 @@ EXTERN_C const IID IID_IFileManagerCom;
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE CopyItem( 
             /* [in] */ const BSTR newPath,
             /* [in] */ const BSTR oldPath) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE MoveItem( 
+            /* [in] */ const BSTR newPath,
+            /* [in] */ const BSTR oldPath) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE RenameItem( 
+            /* [in] */ const BSTR newPath,
+            /* [in] */ const BSTR oldPath) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ShowProperties( 
+            /* [in] */ BSTR path) = 0;
         
     };
     
@@ -157,16 +168,16 @@ EXTERN_C const IID IID_IFileManagerCom;
             /* [out] */ EXCEPINFO *pExcepInfo,
             /* [out] */ UINT *puArgErr);
         
-        /* [id] */ HRESULT ( STDMETHODCALLTYPE *getFolder )( 
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *GetFolder )( 
             IFileManagerCom * This,
             BSTR path,
             VARIANT *names);
         
-        /* [id] */ HRESULT ( STDMETHODCALLTYPE *getRoot )( 
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *GetRoot )( 
             IFileManagerCom * This,
             VARIANT *names);
         
-        /* [id] */ HRESULT ( STDMETHODCALLTYPE *getListIcon )( 
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *GetListIcon )( 
             IFileManagerCom * This,
             /* [out] */ VARIANT *icons);
         
@@ -183,6 +194,20 @@ EXTERN_C const IID IID_IFileManagerCom;
             IFileManagerCom * This,
             /* [in] */ const BSTR newPath,
             /* [in] */ const BSTR oldPath);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *MoveItem )( 
+            IFileManagerCom * This,
+            /* [in] */ const BSTR newPath,
+            /* [in] */ const BSTR oldPath);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *RenameItem )( 
+            IFileManagerCom * This,
+            /* [in] */ const BSTR newPath,
+            /* [in] */ const BSTR oldPath);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *ShowProperties )( 
+            IFileManagerCom * This,
+            /* [in] */ BSTR path);
         
         END_INTERFACE
     } IFileManagerComVtbl;
@@ -220,14 +245,14 @@ EXTERN_C const IID IID_IFileManagerCom;
     ( (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr) ) 
 
 
-#define IFileManagerCom_getFolder(This,path,names)	\
-    ( (This)->lpVtbl -> getFolder(This,path,names) ) 
+#define IFileManagerCom_GetFolder(This,path,names)	\
+    ( (This)->lpVtbl -> GetFolder(This,path,names) ) 
 
-#define IFileManagerCom_getRoot(This,names)	\
-    ( (This)->lpVtbl -> getRoot(This,names) ) 
+#define IFileManagerCom_GetRoot(This,names)	\
+    ( (This)->lpVtbl -> GetRoot(This,names) ) 
 
-#define IFileManagerCom_getListIcon(This,icons)	\
-    ( (This)->lpVtbl -> getListIcon(This,icons) ) 
+#define IFileManagerCom_GetListIcon(This,icons)	\
+    ( (This)->lpVtbl -> GetListIcon(This,icons) ) 
 
 #define IFileManagerCom_OpenItem(This,path,isFolder)	\
     ( (This)->lpVtbl -> OpenItem(This,path,isFolder) ) 
@@ -237,6 +262,15 @@ EXTERN_C const IID IID_IFileManagerCom;
 
 #define IFileManagerCom_CopyItem(This,newPath,oldPath)	\
     ( (This)->lpVtbl -> CopyItem(This,newPath,oldPath) ) 
+
+#define IFileManagerCom_MoveItem(This,newPath,oldPath)	\
+    ( (This)->lpVtbl -> MoveItem(This,newPath,oldPath) ) 
+
+#define IFileManagerCom_RenameItem(This,newPath,oldPath)	\
+    ( (This)->lpVtbl -> RenameItem(This,newPath,oldPath) ) 
+
+#define IFileManagerCom_ShowProperties(This,path)	\
+    ( (This)->lpVtbl -> ShowProperties(This,path) ) 
 
 #endif /* COBJMACROS */
 

@@ -15,12 +15,15 @@ import "ocidl.idl";
 	pointer_default(unique)
 ]
 interface IFileManagerCom : IDispatch{
-	[id(1)] HRESULT getFolder(BSTR path, VARIANT * names);
-	[id(2)] HRESULT getRoot(VARIANT * names);
-	[id(3)] HRESULT getListIcon([out] VARIANT * icons);
+	[id(1)] HRESULT GetFolder(BSTR path, VARIANT * names);
+	[id(2)] HRESULT GetRoot(VARIANT * names);
+	[id(3)] HRESULT GetListIcon([out] VARIANT * icons);
 	[id(4)] HRESULT OpenItem([in] BSTR path, [out] BOOL * isFolder);
 	[id(5)] HRESULT DeleteItem([in] BSTR path);
 	[id(6)] HRESULT CopyItem([in] const BSTR newPath, [in] const BSTR oldPath);
+	[id(7)] HRESULT MoveItem([in] const BSTR newPath, [in] const BSTR oldPath);
+	[id(8)] HRESULT RenameItem([in] const BSTR newPath, [in] const BSTR oldPath);
+	[id(9)] HRESULT ShowProperties([in] BSTR path);
 };
  
 [
