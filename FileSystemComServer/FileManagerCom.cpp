@@ -238,3 +238,18 @@ STDMETHODIMP CFileManagerCom::RenameItem(BSTR newPath, BSTR oldPath)
 
 	return ProcessFile(FO_RENAME, newPath, oldPath);
 }
+
+STDMETHODIMP CFileManagerCom::ShowProperties(BSTR path)
+{
+	SHELLEXECUTEINFO sei = {0};
+	sei.cbSize = sizeof(sei);
+	//sei.hwnd = 
+	sei.lpVerb = L"properties";
+	sei.lpFile = T2W(path);
+	sei.nShow = SW_SHOW;
+	sei.fMask = SEE_MASK_INVOKEIDLIST;
+
+	ShellExecuteEx(&sei);
+
+	return S_OK;
+}

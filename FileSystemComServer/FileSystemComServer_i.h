@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Fri May 09 09:44:22 2014
+/* at Wed May 14 14:01:07 2014
  */
 /* Compiler settings for FileSystemComServer.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
@@ -105,16 +105,16 @@ EXTERN_C const IID IID_IFileManagerCom;
             /* [in] */ BSTR path) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE CopyItem( 
-            /* [in] */ const BSTR newPath,
-            /* [in] */ const BSTR oldPath) = 0;
+            /* [in] */ BSTR newPath,
+            /* [in] */ BSTR oldPath) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE MoveItem( 
-            /* [in] */ const BSTR newPath,
-            /* [in] */ const BSTR oldPath) = 0;
+            /* [in] */ BSTR newPath,
+            /* [in] */ BSTR oldPath) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE RenameItem( 
-            /* [in] */ const BSTR newPath,
-            /* [in] */ const BSTR oldPath) = 0;
+            /* [in] */ BSTR newPath,
+            /* [in] */ BSTR oldPath) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE ShowProperties( 
             /* [in] */ BSTR path) = 0;
@@ -192,18 +192,18 @@ EXTERN_C const IID IID_IFileManagerCom;
         
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *CopyItem )( 
             IFileManagerCom * This,
-            /* [in] */ const BSTR newPath,
-            /* [in] */ const BSTR oldPath);
+            /* [in] */ BSTR newPath,
+            /* [in] */ BSTR oldPath);
         
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *MoveItem )( 
             IFileManagerCom * This,
-            /* [in] */ const BSTR newPath,
-            /* [in] */ const BSTR oldPath);
+            /* [in] */ BSTR newPath,
+            /* [in] */ BSTR oldPath);
         
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *RenameItem )( 
             IFileManagerCom * This,
-            /* [in] */ const BSTR newPath,
-            /* [in] */ const BSTR oldPath);
+            /* [in] */ BSTR newPath,
+            /* [in] */ BSTR oldPath);
         
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *ShowProperties )( 
             IFileManagerCom * This,

@@ -548,12 +548,31 @@ void CFileSystemComClientDlg::OnRename()
 
 void CFileSystemComClientDlg::OnProperties()
 {
-	SHELLEXECUTEINFO sei = {0};
+/*	SHELLEXECUTEINFOW sei;
+	memset(&sei, 0, sizeof(sei));
+
 	sei.cbSize = sizeof(sei);
+	sei.hwnd = this->m_hWnd;
 	sei.lpVerb = L"properties";
-	sei.lpFile = L"D:\\1.jpg";
+	sei.lpFile = T2W(GetPathToSelectedItemList().AllocSysString());
 	sei.nShow = SW_SHOW;
 	sei.fMask = SEE_MASK_INVOKEIDLIST;
+	
+	ShellExecuteExW(&sei);
+	*/
+	
+		::CoInitialize(NULL);
+	IFileManagerCom *fmc = NULL;
+	
+	HRESULT hResult = ::CoCreateInstance(CLSID_FileManagerCom, NULL, CLSCTX_INPROC_SERVER, IID_IFileManagerCom, (LPVOID*)&fmc);
 
-	ShellExecuteEx(&sei);
+	if (FAILED(hResult))
+	{
+		MessageBox(L"Failed in creating COM Component", L"Error", MB_ICONERROR);
+		return;
+	}
+
+	CString h = GetPathToSelectedItemList();
+
+	HRESULT hr = fmc->ShowProperties(GetPathToSelectedItemList().AllocSysString());
 }

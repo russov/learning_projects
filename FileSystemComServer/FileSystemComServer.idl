@@ -20,9 +20,9 @@ interface IFileManagerCom : IDispatch{
 	[id(3)] HRESULT GetListIcon([out] VARIANT * icons);
 	[id(4)] HRESULT OpenItem([in] BSTR path, [out] BOOL * isFolder);
 	[id(5)] HRESULT DeleteItem([in] BSTR path);
-	[id(6)] HRESULT CopyItem([in] const BSTR newPath, [in] const BSTR oldPath);
-	[id(7)] HRESULT MoveItem([in] const BSTR newPath, [in] const BSTR oldPath);
-	[id(8)] HRESULT RenameItem([in] const BSTR newPath, [in] const BSTR oldPath);
+	[id(6)] HRESULT CopyItem([in] BSTR newPath, [in] BSTR oldPath);
+	[id(7)] HRESULT MoveItem([in] BSTR newPath, [in] BSTR oldPath);
+	[id(8)] HRESULT RenameItem([in] BSTR newPath, [in] BSTR oldPath);
 	[id(9)] HRESULT ShowProperties([in] BSTR path);
 };
  
