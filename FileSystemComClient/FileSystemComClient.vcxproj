@@ -75,6 +75,16 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>mt.exe -nologo -manifest ..\Debug\FileSystemComClient.exe.manifest -updateresource:"..\Debug\FileSystemComClient.exe;#1"</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd /C copy /Y $(ProjectDir)..\manifest\Debug $(ProjectDir)..\manifest\$(TargetFileName).manifest</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
