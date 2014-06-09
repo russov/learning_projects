@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" 
+  manifestVersion="1.0">
+
+<assemblyIdentity
+   type="win32"
+   name="FileSystemComServer.X"
+   version="1.0.0.0" />
+
+<file name = "FileSystemComServer.dll">
+
+<comClass
+    clsid="{0FC9B050-6CD8-410E-A012-47EAAF58ADF7}"
+    threadingModel = "Apartment" />
+
+<typelib tlbid="{76333070-6F9C-416C-B18F-CDEFDFE5242D}"
+       version="1.0" helpdir=""/>
+
+</file>
+
+<comInterfaceExternalProxyStub 
+    name="IFileManagerCom" 
+    iid="{A9DCCC9E-5B5A-4E23-B726-259F223816AE}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid = "{76333070-6F9C-416C-B18F-CDEFDFE5242D}" />
+
+</assembly>

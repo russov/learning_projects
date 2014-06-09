@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v100</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Static</UseOfMfc>
@@ -83,7 +83,8 @@
       <Command>mt.exe -nologo -manifest ..\Debug\FileSystemComClient.exe.manifest -updateresource:"..\Debug\FileSystemComClient.exe;#1"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>cmd /C copy /Y $(ProjectDir)..\manifest\Debug $(ProjectDir)..\manifest\$(TargetFileName).manifest</Command>
+      <Command>copy /Y "$(SolutionDir)manifest\FileSystemComClient.exe.manifest" "$(SolutionDir)Debug"
+copy /Y "$(SolutionDir)manifest\FileSystemComServer.X.manifest" "$(SolutionDir)Debug"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -112,6 +113,13 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent>
+      <Command>copy /Y "$(SolutionDir)manifest\FileSystemComClient.exe.manifest" "$(SolutionDir)Release"
+copy /Y "$(SolutionDir)manifest\FileSystemComServer.X.manifest" "$(SolutionDir)Release"</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>mt.exe -nologo -manifest ..\Release\FileSystemComClient.exe.manifest -updateresource:"..\Release\FileSystemComClient.exe;#1"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
