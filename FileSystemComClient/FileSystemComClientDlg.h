@@ -5,7 +5,6 @@
 #pragma once
 #include "afxcmn.h"
 
-
 // CFileSystemComClientDlg dialog
 class CFileSystemComClientDlg : public CDialogEx
 {
@@ -24,21 +23,25 @@ protected:
 	
 	CString GetPathToItemTree(const HTREEITEM hTreeItem) const;
 	CString GetPathToSelectedItemList() const;
+
+	BOOL PreTranslateMessage(MSG* pMsg);
 	
 // Implementation
 protected:
+	const static int ID_TXTCTRL_TOMODIFY = 1001;
+	
 	HICON m_hIcon;
 	CTreeCtrl m_TreeControl;
 	CListCtrl m_ListControl;
 	
+	CEdit *m_pTxtCtrlToModify;
+
 	CImageList m_pImgList;
 	CString m_PathToCopyingFile;
 
 	bool m_IsCutButton;
 
-
 public:
-	// Generated message map functions
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
@@ -62,4 +65,6 @@ public:
 	afx_msg void OnDelete();
 	afx_msg void OnRename();
 	afx_msg void OnProperties();
+
+	afx_msg void OnLvnItemchangedList(NMHDR *pNMHDR, LRESULT *pResult);
 };

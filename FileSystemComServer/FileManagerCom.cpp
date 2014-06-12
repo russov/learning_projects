@@ -33,18 +33,20 @@ STDMETHODIMP CFileManagerCom::ProcessFile(UINT operation, BSTR newPath, BSTR old
 
 	std::string wszBuffer;
 	
-	TCHAR bufIn[_MAX_PATH + 1]; 
+	TCHAR bufIn[_MAX_PATH + 2]; 
 	_tcscpy(bufIn, CString(newPath));   
-    bufIn[_tcslen(bufIn)+1]=0;    
- 
-	TCHAR bufOut[_MAX_PATH + 1]; 
+    bufIn[_tcslen(bufIn)+1]='\0';    
+	bufIn[_tcslen(bufIn)+2]='\0';    
+
+	TCHAR bufOut[_MAX_PATH + 2]; 
 	_tcscpy(bufOut, CString(oldPath));   
-    bufOut[_tcslen(bufOut)+1]=0;  
+    bufOut[_tcslen(bufOut)+1]='\0';  
+	bufOut[_tcslen(bufOut)+2]='\0';  
 
 	SHFILEOPSTRUCT lpFileOp;
 	lpFileOp.hwnd=NULL;
 	lpFileOp.wFunc=operation;
-	lpFileOp.pFrom= bufOut;  
+	lpFileOp.pFrom = bufOut;  
 	lpFileOp.pTo=bufIn;
     lpFileOp.fFlags=FOF_NOCONFIRMATION;
     lpFileOp.hNameMappings=NULL;

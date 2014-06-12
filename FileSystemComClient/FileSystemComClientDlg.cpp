@@ -76,6 +76,8 @@ BEGIN_MESSAGE_MAP(CFileSystemComClientDlg, CDialogEx)
 	ON_NOTIFY(NM_DBLCLK, IDC_LIST, &CFileSystemComClientDlg::OnNMDblclkList)
 	ON_NOTIFY(TVN_ITEMEXPANDED, IDC_TREE_FILE_SYSTEM, &CFileSystemComClientDlg::OnTvnItemexpandedTreeFileSystem)
 	ON_NOTIFY(NM_RCLICK, IDC_LIST, &CFileSystemComClientDlg::OnNMRClickList)
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST, &CFileSystemComClientDlg::OnLvnItemchangedList)
+
 	ON_COMMAND(ID_COPY, &CFileSystemComClientDlg::OnCopy)
 	ON_COMMAND(ID_CUT, &CFileSystemComClientDlg::OnCut)
 	ON_COMMAND(ID_PASTE, &CFileSystemComClientDlg::OnPaste)
@@ -177,6 +179,8 @@ BOOL CFileSystemComClientDlg::OnInitDialog()
 	hr = SafeArrayUnaccessData(psa);
 	hr = SafeArrayDestroy(psa);
 
+	m_pTxtCtrlToModify = NULL;
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -192,10 +196,6 @@ void CFileSystemComClientDlg::OnSysCommand(UINT nID, LPARAM lParam)
 		CDialogEx::OnSysCommand(nID, lParam);
 	}
 }
-
-// If you add a minimize button to your dialog, you will need the code below
-//  to draw the icon.  For MFC applications using the document/view model,
-//  this is automatically done for you by the framework.
 
 void CFileSystemComClientDlg::OnPaint()
 {
@@ -402,45 +402,16 @@ void CFileSystemComClientDlg::OnTvnItemexpandedTreeFileSystem(NMHDR *pNMHDR, LRE
 void CFileSystemComClientDlg::OnNMRClickList(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
-	
 
-	POSITION pos = m_ListControl.GetFirstSelectedItemPosition();
-	CMenu mPopurMenu1;
+	CMenu mPopurMenu;
 	
-	mPopurMenu1.LoadMenu(IDR_MENUPOPUPLIST);
+	mPopurMenu.LoadMenu(IDR_MENUPOPUPLIST);
 	POINT current_point;
 	GetCursorPos(&current_point);
-	
 
+	mPopurMenu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,current_point.x,current_point.y,this);
+	mPopurMenu.DestroyMenu();
 
-
-	//LV_HITTESTINFO hPosList;//ñòðóêòóðà ëèñòà
-   // hPosList.pt=point;
-    //hPosList.flags=0;
-	/*
-	// Âûêëþ÷àåì íåêîòîðûå ôóíêöèè
-	if(CopyItem == '0')
-	{
-		mPopurMenu1.GetSubMenu(0)->EnableMenuItem(ID_INSERT,MF_DISABLED | MF_GRAYED);
-	}
-	if(GetListCtrl().SubItemHitTest(&hPosList)!=-1)  
-	{
-		mPopurMenu1.GetSubMenu(0)->EnableMenuItem(ID_INSERT,MF_DISABLED | MF_GRAYED);
-	}
-	else
-	{
-		mPopurMenu1.GetSubMenu(0)->EnableMenuItem(ID_OPEN,MF_DISABLED | MF_GRAYED);
-		mPopurMenu1.GetSubMenu(0)->EnableMenuItem(ID_COPY,MF_DISABLED | MF_GRAYED);
-		mPopurMenu1.GetSubMenu(0)->EnableMenuItem(ID_DELETE,MF_DISABLED | MF_GRAYED);
-	}
-	*/
-	mPopurMenu1.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,current_point.x,current_point.y,this);
-	
-	// Óíè÷òîæàåì ìåíþ
-	mPopurMenu1.DestroyMenu();
-
-	
-	// TODO: Add your control notification handler code here
 	*pResult = 0;
 }
 
@@ -516,33 +487,21 @@ void CFileSystemComClientDlg::OnDelete()
 
 void CFileSystemComClientDlg::OnRename()
 {
-	/*if (m_PathToCopyingFile.IsEmpty())
-		return;
+    if(m_ListControl.GetFirstSelectedItemPosition())   
+    {
+		int index = m_ListControl.GetSelectionMark();
+		CRect rect;
 
-	::CoInitialize(NULL);
-	IFileManagerCom *fmc = NULL;
-	
-	HRESULT hResult = ::CoCreateInstance(CLSID_FileManagerCom, NULL, CLSCTX_INPROC_SERVER, IID_IFileManagerCom, (LPVOID*)&fmc);
+        if(m_pTxtCtrlToModify != NULL)
+            delete m_pTxtCtrlToModify;
+        m_pTxtCtrlToModify = new CEdit();
 
-	if (FAILED(hResult))
-	{
-		MessageBox(L"Failed in creating COM Component", L"Error", MB_ICONERROR);
-		return;
-	}
-
-	if (m_IsCutButton)
-	{
-		HRESULT hr = fmc->MoveItem((GetPathToItemTree(m_TreeControl.GetSelectedItem())).AllocSysString(), m_PathToCopyingFile.AllocSysString());
-		m_PathToCopyingFile = CString("");
-		m_IsCutButton = false;	
-	} else
-	{
-		HRESULT hr = fmc->CopyItem((GetPathToItemTree(m_TreeControl.GetSelectedItem())).AllocSysString(), m_PathToCopyingFile.AllocSysString());
-	}
+		m_ListControl.GetItemRect(index, rect, LVIR_LABEL);
 		
-	HTREEITEM hItem = m_TreeControl.GetSelectedItem();
-	m_TreeControl.Select(NULL, TVGN_CARET);
-	m_TreeControl.Select(hItem, TVGN_CARET);*/
+		m_pTxtCtrlToModify->Create(ES_CENTER | WS_VISIBLE | ES_AUTOHSCROLL, rect, &m_ListControl, ID_TXTCTRL_TOMODIFY);
+        m_pTxtCtrlToModify->SetFocus();
+        m_pTxtCtrlToModify->SetWindowTextW(m_ListControl.GetItemText(index, 0)); 
+    }
 }
 
 
@@ -572,7 +531,54 @@ void CFileSystemComClientDlg::OnProperties()
 		return;
 	}
 
-	CString h = GetPathToSelectedItemList();
-
 	HRESULT hr = fmc->ShowProperties(GetPathToSelectedItemList().AllocSysString());
+}
+
+void CFileSystemComClientDlg::OnLvnItemchangedList(NMHDR *pNMHDR, LRESULT *pResult)
+{
+    LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+    *pResult = 0;
+
+    if(m_pTxtCtrlToModify != NULL)
+    {
+        delete m_pTxtCtrlToModify;
+        m_pTxtCtrlToModify = NULL;
+    }
+}
+
+BOOL CFileSystemComClientDlg::PreTranslateMessage(MSG* pMsg)
+{
+    if (pMsg->message == WM_KEYDOWN)
+    {
+        if (pMsg->wParam == VK_RETURN &&
+			GetFocus() == m_pTxtCtrlToModify)
+        {
+			::CoInitialize(NULL);
+			IFileManagerCom *fmc = NULL;
+	
+			HRESULT hResult = ::CoCreateInstance(CLSID_FileManagerCom, NULL, CLSCTX_INPROC_SERVER, IID_IFileManagerCom, (LPVOID*)&fmc);
+
+			if (FAILED(hResult))
+			{
+				MessageBox(L"Failed in creating COM Component", L"Error", MB_ICONERROR);
+				return CDialog::PreTranslateMessage(pMsg) && false;
+			}
+
+			CString newName;
+			m_pTxtCtrlToModify->GetWindowTextW(newName);
+					
+ 			HRESULT hr = fmc->RenameItem((GetPathToItemTree(m_TreeControl.GetSelectedItem()) + "\\" + newName).AllocSysString(), GetPathToSelectedItemList().AllocSysString());
+					
+			HTREEITEM hItem = m_TreeControl.GetSelectedItem();
+			m_TreeControl.Select(NULL, TVGN_CARET);
+			m_TreeControl.Select(hItem, TVGN_CARET);
+
+			if(m_pTxtCtrlToModify != NULL)
+			{
+				delete m_pTxtCtrlToModify;
+				m_pTxtCtrlToModify = NULL;
+			}
+        }
+    }
+    return CDialog::PreTranslateMessage(pMsg);
 }
